@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<comps>
+	<Panel width="500" height="395">
+		<VBox x="10" y="10" spacing="6">
+			<Label text="源目录和导出目录不能为包含关系"/>
+			<HBox>
+				<Label text="源目录:"/>
+				<InputText id="sourceDir" enabled="false" width="200"/>
+				<PushButton id="selectSource" label="选择" event="click:onSelectSource"/>
+			</HBox>
+			<HBox>
+				<Label text="导出目录:"/>
+				<InputText id="exportDir" enabled="false" width="200" />
+				<PushButton id="selectExport" label="选择" event="click:onSelectExport"/>
+			</HBox>
+			<HBox>
+				<Label text="输出平台:"/>
+				<RadioButton id="p3" label="所有" groupName="group1" selected="true"/>
+				<RadioButton id="p0" label="IOS" groupName="group1"/>
+				<RadioButton id="p1" label="PC/Mac" groupName="group1"/>
+				<RadioButton id="p2" label="Android" groupName="group1"/>
+				<CheckBox id="compress" selected="true" label="压缩"></CheckBox>
+				<CheckBox id="mips" label="mips"></CheckBox>
+			</HBox>
+			<CheckBox id="to_square" label="图像自动转换为正方形"></CheckBox>
+			<CheckBox id="converChilds" selected="true" label="转换子目录"></CheckBox>
+			<HBox>
+				<Label text="输出质量:"/>
+				<HUISlider id="quality" maximum="180" minimum="0"/>
+				<Label text="(越小输出质量越高)"/>
+			</HBox>
+			<PushButton id="export" label="导出" event="click:onExport"/>
+			<TextArea id="logs" width="480" height="194"></TextArea>
+		</VBox>
+	</Panel>
+</comps>
