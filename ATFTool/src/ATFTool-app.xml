@@ -3,7 +3,7 @@
 	<id>ATFTool</id>
 	<filename>ATFTool</filename>
 	<name>ATFTool</name>
-	<versionNumber>1.0.0</versionNumber>
+	<versionNumber>1.0.1</versionNumber>
 	<initialWindow>
 		<content>[此值将由 Flash Builder 在输出 app.xml 中覆盖]</content>
 		<autoOrients>false</autoOrients>

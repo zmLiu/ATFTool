@@ -57,8 +57,10 @@ package Util
 					fs.open(file,FileMode.WRITE);
 					fs.writeBytes(data);
 					fs.close();
+				}else{
+//					bytes = null;
 				}
-				converCallBack();
+				converCallBack(bytes,file);
 			}
 		}
 		

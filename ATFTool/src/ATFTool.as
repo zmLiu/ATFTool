@@ -5,6 +5,9 @@ package
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.filesystem.File;
+	import flash.filesystem.FileMode;
+	import flash.filesystem.FileStream;
+	import flash.utils.ByteArray;
 	import flash.utils.setTimeout;
 	
 	import Util.BitmapUtil;
@@ -107,6 +110,10 @@ package
 			}
 		}
 		
+		private var sourceFile:String;
+		private var exportFile:String;
+		private var reImageBytes:ByteArray;
+		private var reFile:File;
 		/**
 		 * 开始输出
 		 * */
@@ -115,20 +122,33 @@ package
 			
 			BitmapUtil.converBitmapToPowerOf2(file,to_square,converCallBack,logCallBack);
 			
-			function converCallBack():void{
-				var sourceFile:String = file.nativePath;
-				var exportFile:String = sourceFile.replace(sourceDir,exportDir);
+			reImageBytes = null;
+			reFile = null;
+			function converCallBack(b:ByteArray,f:File):void{
+				reImageBytes = b;
+				reFile = f;
+				
+				sourceFile = file.nativePath;
+				exportFile = sourceFile.replace(sourceDir,exportDir);
 				exportFile = exportFile.replace("."+file.extension,".atf");
 				
 				png2atfUtil.converAtf(sourceDir,sourceFile,exportFile,platform,compress,mips,quality,converAtfCallBack,logCallBack);
-			}
-			
-			function converAtfCallBack():void{
-				if(exportFiles.length > 0){
-					startExport(exportFiles.pop());
-				}else{
-					ui.log("导出完毕.\n");
-					ui.exportBtnEnabled = true;
+				
+				function converAtfCallBack():void{
+					//还原图片
+					if(reImageBytes){
+						var fs:FileStream = new FileStream();
+						fs.open(reFile,FileMode.WRITE);
+						fs.writeBytes(reImageBytes);
+						fs.close();
+					}
+					
+					if(exportFiles.length > 0){
+						startExport(exportFiles.pop());
+					}else{
+						ui.log("导出完毕.\n");
+						ui.exportBtnEnabled = true;
+					}
 				}
 			}
 			
