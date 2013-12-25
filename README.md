@@ -1,6 +1,8 @@
 ATFTool
 =======
 
+已经整合到[StarlingSwf](http://zmliu.github.io/2013/11/09/StarlingSwfTool/)中，该库不再更新。请移步[StarlingSwf](http://zmliu.github.io/2013/11/09/StarlingSwfTool/)
+
 批量导出Atf的工具，使用是adobe atf 编码核心
 
 ####先说一下关于atf的bug
